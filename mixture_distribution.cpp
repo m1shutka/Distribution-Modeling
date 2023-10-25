@@ -6,17 +6,17 @@ public:
 	MixtureDistribution(Distribution1& d1, Distribution2& d2, double p):
 		d1(d1), d2(d2), p(p) {};
 
-	double density(const double x) const;
-	double expected_value() const;
-	double dispersion() const;
-	double kurtosis() const;
-	double asymmetry() const;
-	double rand_var() const;
-	std::vector<double> generate_selection(const int n) const;
-	std::vector<std::pair<double, double>> generate_graph_selection(const std::vector<double>& selection) const;
+	double density(const double x) const override;
+	double expected_value() const override;
+	double dispersion() const override;
+	double kurtosis() const override;
+	double asymmetry() const override;
+	double rand_var() const override;
+	std::vector<double> generate_selection(const int n) const override;
+	std::vector<std::pair<double, double>> generate_graph_selection(const std::vector<double>& selection) const override;
 
-	void load_from_file(std::ifstream& file);
-	void save_in_file(std::ofstream& file) const;
+	void load_from_file(std::ifstream& file) override;
+	void save_in_file(std::ofstream& file) const override;
 
 	Distribution1& component1() {return d1;}
 	Distribution2& component2() {return d2;}
