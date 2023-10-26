@@ -223,7 +223,7 @@ std::vector<std::pair<double, double>> EmpiricalDistribution::generate_graph_sel
 	return result;
 }
 
-void EmpiricalDistribution::save_in_file(std::ofstream& file) const {
+void EmpiricalDistribution::save_in_file(std::ofstream& file){
 	file.open("epmric_distribution.txt");
 	for (int i = 0; i < size; ++i) {
 		file << selection[i] << " " << std::endl;

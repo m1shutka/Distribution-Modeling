@@ -29,7 +29,7 @@ public:
 	int get_intrevals_number() const;
 
 	void load_from_file(std::ifstream& file) override;
-	void save_in_file(std::ofstream& file) const override;
+	void save_in_file(std::ofstream& file) override;
 private:
 	std::vector<double> selection;
 	std::vector<double> empirical_density;

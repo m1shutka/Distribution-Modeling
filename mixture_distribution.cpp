@@ -16,7 +16,7 @@ public:
 	std::vector<std::pair<double, double>> generate_graph_selection(const std::vector<double>& selection) const override;
 
 	void load_from_file(std::ifstream& file) override;
-	void save_in_file(std::ofstream& file) const override;
+	void save_in_file(std::ofstream& file) override;
 
 	Distribution1& component1() {return d1;}
 	Distribution2& component2() {return d2;}
@@ -99,15 +99,16 @@ std::vector<std::pair<double, double>> MixtureDistribution<Dist1, Dist2>::genera
 }
 
 template<class Dist1, class Dist2>
-void MixtureDistribution<Dist1, Dist2>::save_in_file(std::ofstream& file) const {
-	file.open("mixtrparams.txt");
-	file << d1.get_form() << std::endl << d1.get_shift() << std::endl << d1.get_scale() << std::endl << d2.get_form() << std::endl << d2.get_shift() << std::endl << d2.get_scale() << std::endl << p;
-	file.close();
+void MixtureDistribution<Dist1, Dist2>::save_in_file(std::ofstream& file){
+	file << p << std::endl;
+	component1().save_in_file(file);
+	component2().save_in_file(file);
+	
 }
 
 template<class Dist1, class Dist2>
 void MixtureDistribution<Dist1, Dist2>::load_from_file(std::ifstream& file) {
-	file.open("mixtrparams.txt");
-	file >> d1.get_form() >> std::endl >> d1.get_shift() >> std::endl >> d1.get_scale() >> std::endl >> d2.get_form() >> std::endl >> d2.get_shift() >> std::endl >> d2.get_scale() >> std::endl >> p;
-	file.close();
+	file >> p;
+	component1().load_from_file(file);
+	component2().load_from_file(file);
 }

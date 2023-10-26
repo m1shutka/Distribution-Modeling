@@ -17,5 +17,5 @@ public:
 
 class IPresistend {
 	void virtual load_from_file(std::ifstream& file) = 0;
-	void virtual save_in_file(std::ofstream& file) const = 0;
+	void virtual save_in_file(std::ofstream& file) = 0;
 };

@@ -26,7 +26,7 @@ public:
 	double get_scale() const;
 
 	void load_from_file(std::ifstream& file) override;
-	void save_in_file(std::ofstream& file) const override;
+	void save_in_file(std::ofstream& file) override;
 private:
 	double n;
 	double mu;

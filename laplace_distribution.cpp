@@ -122,20 +122,16 @@ std::vector<std::pair<double, double>> LaplaceDistribution::generate_graph_selec
 	return result;
 }
 
-void LaplaceDistribution::save_in_file(std::ofstream& file) const {
-	file.open("params.txt");
-	file << n << std::endl << mu << std::endl << lambda;
-	file.close();
+void LaplaceDistribution::save_in_file(std::ofstream& file){
+	file << n << std::endl << mu << std::endl << lambda << std::endl;
 }
 
 void LaplaceDistribution::load_from_file(std::ifstream& file) {
 	double n, mu, lambda;
-	file.open("params.txt");
 	if (!file.is_open()) {
 		throw 0;
 	}
 	file >> n >> mu >> lambda;
-	file.close();
 	if (n <= 0 || lambda <= 0) {
 		throw 1;
 	}
