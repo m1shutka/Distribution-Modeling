@@ -18,6 +18,9 @@ public:
 	void load_from_file(std::ifstream& file) override;
 	void save_in_file(std::ofstream& file) override;
 
+	double get_p() const;
+	void set_p(const double p);
+
 	Distribution1& component1() {return d1;}
 	Distribution2& component2() {return d2;}
 private:
@@ -27,6 +30,19 @@ private:
 
 	double random_var() const;
 };
+
+template<class Dist1, class Dist2>
+double MixtureDistribution<Dist1, Dist2>::get_p() const {
+	return p;
+}
+
+template<class Dist1, class Dist2>
+void MixtureDistribution<Dist1, Dist2>::set_p(const double p) {
+	if (p < 0 or p > 1){
+		throw 1;
+	}
+	this->p = p;
+}
 
 template<class Dist1, class Dist2>
 double MixtureDistribution<Dist1, Dist2>::density(const double x) const {

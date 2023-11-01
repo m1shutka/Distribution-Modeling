@@ -12,7 +12,7 @@ EmpiricalDistribution::EmpiricalDistribution(const EmpiricalDistribution& ed):
 }
 
 EmpiricalDistribution::EmpiricalDistribution(std::ifstream& file) {
-	file.open("selectionin.txt");
+	file.open("eparams.txt");
 	if (!file.is_open()) {
 		throw 0;
 	}
@@ -224,7 +224,7 @@ std::vector<std::pair<double, double>> EmpiricalDistribution::generate_graph_sel
 }
 
 void EmpiricalDistribution::save_in_file(std::ofstream& file){
-	file.open("epmric_distribution.txt");
+	file.open("eparams.txt");
 	for (int i = 0; i < size; ++i) {
 		file << selection[i] << " " << std::endl;
 	}
@@ -236,4 +236,13 @@ void EmpiricalDistribution::load_from_file(std::ifstream& file) {
 	if (!file.is_open()) {
 		throw 0;
 	}
+	std::vector<double> result;
+	double x;
+	while (file >> x) {
+		result.push_back(x);
+	}
+	selection = result;
+	size = result.size();
+	k = (int)log2(size) + 1;
+	empirical_density = create_empirical_density(delta_calc(), create_intervals(delta_calc()));
 }
